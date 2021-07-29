@@ -1,6 +1,6 @@
 package tugas.com.security.details;
 
-import tugas.com.security.dto.RegisterDto;
+import tugas.com.security.models.request.RegisterDto;
 import tugas.com.security.models.Employee;
 import tugas.com.security.models.User;
 

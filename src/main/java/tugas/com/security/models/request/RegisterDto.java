@@ -1,4 +1,4 @@
-package tugas.com.security.dto;
+package tugas.com.security.models.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

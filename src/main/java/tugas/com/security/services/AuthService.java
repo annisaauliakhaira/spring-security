@@ -1,29 +1,28 @@
-package tugas.com.security.details;
+package tugas.com.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import tugas.com.security.dto.RegisterDto;
+import tugas.com.security.models.request.RegisterDto;
 import tugas.com.security.models.Department;
 import tugas.com.security.models.Employee;
 import tugas.com.security.models.User;
 import tugas.com.security.repositories.EmployeeRepository;
-import tugas.com.security.repositories.RoleRepository;
 import tugas.com.security.repositories.UserRepository;
-import tugas.com.security.services.UserService;
+
 
 @Service
-public class RegisterServiceImpl{
+public class AuthService {
     private EmployeeRepository employeeRepository;
-
     private UserRepository userRepository;
-    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegisterServiceImpl(EmployeeRepository employeeRepository, UserRepository userRepository, RoleRepository roleRepository) {
+    public AuthService(EmployeeRepository employeeRepository, UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public RegisterDto saveRegister(RegisterDto registerDto) {
@@ -37,7 +36,9 @@ public class RegisterServiceImpl{
 
         User user = new User();
         user.setUsername(registerDto.getUsername());
-        user.setPassword(registerDto.getPassword());
+//        user.setPassword(registerDto.getPassword());
+        String encodedPassword = passwordEncoder.encode(registerDto.getPassword());
+        user.setPassword(encodedPassword);
         user.setEmployee(employeeRepository.save(employee));
         userRepository.save(user);
 
