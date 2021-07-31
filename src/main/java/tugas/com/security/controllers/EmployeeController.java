@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
-@PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
+//@PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
 public class EmployeeController {
     private EmployeeService employeeService;
 
@@ -23,32 +23,32 @@ public class EmployeeController {
     }
 
     @GetMapping("/show")
-    @PreAuthorize("hasAuthority('READ_DATA')")
+//    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<List<Employee>> getAll(){
         return new ResponseEntity(employeeService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/showbyid/{id}")
-    @PreAuthorize("hasAuthority('READ_DATA')")
+//    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<Employee> getById(@PathVariable("id") Long id){
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
+//    @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
     public ResponseEntity<Employee> create(@RequestBody Employee employee){
         return new ResponseEntity(new ResponseMessage<Employee>
                 (employeeService.create(employee), "employee created"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
+//    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     public ResponseEntity<Employee> update(@PathVariable("id") Long id, @RequestBody Employee employee){
         return new ResponseEntity(employeeService.update(id,employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
+//    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
     public ResponseEntity<Employee> delete(@PathVariable("id") Long id){
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);
     }

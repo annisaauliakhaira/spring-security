@@ -14,5 +14,5 @@ import tugas.com.security.models.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
     
     List<Employee> findByDepartment_id (Long departmentId);
-//    List<Employee> findByProjects_id (Long projectId);
+    List<Employee> findByProjects_id (Long projectId);
 }
