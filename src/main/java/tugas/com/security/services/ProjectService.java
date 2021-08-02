@@ -25,6 +25,12 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public List<Project> findByEmployeesId(Long employeeId){
+        employeeRepository.findById(employeeId)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee Not Found"));
+        return projectRepository.findByEmployees_Id(employeeId);
+    }
+
     public Project getById(Long id){
         return projectRepository.findById(id)
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Project Id Not Found"));

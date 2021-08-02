@@ -3,10 +3,10 @@ package tugas.com.security.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tugas.com.security.models.Employee;
 import tugas.com.security.models.ResponseMessage;
+import tugas.com.security.models.request.SearchData;
 import tugas.com.security.services.EmployeeService;
 
 import java.util.List;
@@ -51,5 +51,20 @@ public class EmployeeController {
 //    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
     public ResponseEntity<Employee> delete(@PathVariable("id") Long id){
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/search/firstName")
+    public Employee showByName(@RequestBody SearchData searchData){
+        return employeeService.findByFirstName(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search/emaillike")
+    public List<Employee> showByNameLike(@RequestBody SearchData searchData){
+        return employeeService.findByEmailLike(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search/departmentname")
+    public List<Employee> showByDepartmentName(@RequestBody SearchData searchData){
+        return employeeService.findEmployeeByDepartment(searchData.getSearchKey());
     }
 }

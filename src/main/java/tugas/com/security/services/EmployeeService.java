@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import tugas.com.security.models.Employee;
 import tugas.com.security.repositories.DepartmentRepository;
 import tugas.com.security.repositories.EmployeeRepository;
+import tugas.com.security.repositories.ProjectRepository;
 
 import java.util.List;
 
@@ -15,11 +16,14 @@ import java.util.List;
 public class EmployeeService {
     private EmployeeRepository employeeRepository;
     private DepartmentRepository departmentRepository;
+    private ProjectRepository projectRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository,
+                           DepartmentRepository departmentRepository, ProjectRepository projectRepository) {
         this.employeeRepository = employeeRepository;
         this.departmentRepository = departmentRepository;
+        this.projectRepository = projectRepository;
     }
 
     public List<Employee> getAll(){
@@ -56,6 +60,24 @@ public class EmployeeService {
         departmentRepository.findById(departmentId)
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Department Not Found"));
         return employeeRepository.findByDepartment_id(departmentId);
+    }
+
+    public List<Employee> findByProjectsId(Long projectId){
+        projectRepository.findById(projectId)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Project Not Found"));
+        return employeeRepository.findByProjects_id(projectId);
+    }
+
+    public Employee findByFirstName(String firstName){
+        return employeeRepository.findByFirstName(firstName);
+    }
+
+    public List<Employee> findByEmailLike(String email){
+        return employeeRepository.findByEmailLike("%"+email+"%");
+    }
+
+    public List<Employee> findEmployeeByDepartment(String department){
+        return employeeRepository.findEmployeeByDepartment("%"+department+"%");
     }
 
 }

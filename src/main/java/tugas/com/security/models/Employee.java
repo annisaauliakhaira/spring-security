@@ -43,7 +43,7 @@ public class Employee {
     @PrimaryKeyJoinColumn
     private User user;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany
     @JoinTable(
             name ="employee_project",
