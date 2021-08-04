@@ -13,7 +13,7 @@ import tugas.com.security.services.ProjectService;
 import java.util.List;
 
 @RestController
-@RequestMapping("project")
+@RequestMapping("/project")
 public class ProjectController {
     private ProjectService projectService;
 

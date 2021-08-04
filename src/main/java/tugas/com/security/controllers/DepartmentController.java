@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/department")
-@PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+//@PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
 public class DepartmentController {
     private DepartmentService departmentService;
 
@@ -23,19 +23,19 @@ public class DepartmentController {
     }
 
     @GetMapping("/show")
-    @PreAuthorize("hasAuthority('READ_DATA')")
+//    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<List<Department>> getAll(){
         return new ResponseEntity(departmentService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/showbyid/{id}")
-    @PreAuthorize("hasAuthority('READ_DATA')")
+//    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<Department> getById(@PathVariable("id") Long id){
         return new ResponseEntity(departmentService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('CREATE_DATA')")
+//    @PreAuthorize("hasAuthority('CREATE_DATA')")
     public ResponseEntity<Department> create(@RequestBody Department department){
         return new ResponseEntity(new ResponseMessage<Department>
                 (departmentService.create(department), "department created"), HttpStatus.OK);

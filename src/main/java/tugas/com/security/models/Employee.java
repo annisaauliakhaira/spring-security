@@ -44,7 +44,7 @@ public class Employee {
     private User user;
 
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name ="employee_project",
             joinColumns = @JoinColumn(name = "employee_id"),
