@@ -29,7 +29,7 @@ public class Project {
     private String description;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(mappedBy = "projects")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Employee> employees;
 }

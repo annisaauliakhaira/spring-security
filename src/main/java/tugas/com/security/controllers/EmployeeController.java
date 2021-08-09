@@ -22,32 +22,32 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/show")
+    @GetMapping
 //    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<List<Employee>> getAll(){
         return new ResponseEntity(employeeService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/showbyid/{id}")
+    @GetMapping("/{id}")
 //    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<Employee> getById(@PathVariable("id") Long id){
         return new ResponseEntity(employeeService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping
 //    @PreAuthorize("hasAuthority('CREATE_EMPLOYEE')")
     public ResponseEntity<Employee> create(@RequestBody Employee employee){
         return new ResponseEntity(new ResponseMessage<Employee>
                 (employeeService.create(employee), "employee created"), HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
 //    @PreAuthorize("hasAuthority('UPDATE_EMPLOYEE')")
     public ResponseEntity<Employee> update(@PathVariable("id") Long id, @RequestBody Employee employee){
         return new ResponseEntity(employeeService.update(id,employee), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
 //    @PreAuthorize("hasAuthority('DELETE_EMPLOYEE')")
     public ResponseEntity<Employee> delete(@PathVariable("id") Long id){
         return new ResponseEntity(employeeService.delete(id), HttpStatus.OK);

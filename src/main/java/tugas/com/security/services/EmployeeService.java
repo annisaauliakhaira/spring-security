@@ -53,6 +53,7 @@ public class EmployeeService {
     public Employee delete(Long id){
         Employee employee = getById(id);
         employeeRepository.deleteById(id);
+        employee.setProjects(null);
         return employee;
     }
 

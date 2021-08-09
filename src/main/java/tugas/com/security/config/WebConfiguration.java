@@ -62,5 +62,6 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .httpBasic();
+        http.cors();
     }
 }
