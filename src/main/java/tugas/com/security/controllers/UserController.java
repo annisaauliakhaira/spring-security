@@ -34,8 +34,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest data){
-        return new ResponseEntity(new ResponseMessage<AuthResponse>
-                (loginService.login(data), "Succes"), HttpStatus.OK);
+        return new ResponseEntity(loginService.login(data), HttpStatus.OK);
     }
 
     @GetMapping("/findall")
