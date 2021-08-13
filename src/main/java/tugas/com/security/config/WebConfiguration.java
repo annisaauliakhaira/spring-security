@@ -52,16 +52,16 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().and()
                 .csrf()
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/user/**", "/employee/**",
-                        "/project/**", "/employee-department/**", "/employee-project/**", "/email/**")
+                         "/employee-department/**", "/employee-project/**", "/email/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic();
-        http.cors();
     }
 }

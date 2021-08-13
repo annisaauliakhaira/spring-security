@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/project")
+@PreAuthorize("hasRole('ADMIN')")
 public class ProjectController {
     private ProjectService projectService;
 
@@ -23,13 +24,13 @@ public class ProjectController {
     }
 
     @GetMapping
-//    @PreAuthorize("hasAuthority('READ_DATA')")
+    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<List<Project>> getAll(){
         return new ResponseEntity(projectService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("hasAuthority('READ_DATA')")
+    @PreAuthorize("hasAuthority('READ_DATA')")
     public ResponseEntity<Project> getById(@PathVariable("id") Long id){
         return new ResponseEntity(projectService.getById(id), HttpStatus.OK);
     }
