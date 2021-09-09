@@ -29,6 +29,7 @@ public class UserController {
 
     @PostMapping("/register")
     public RegisterDto register(@RequestBody RegisterDto registerDto){
+
         return authService.saveRegister(registerDto);
     }
 

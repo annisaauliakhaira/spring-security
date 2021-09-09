@@ -8,7 +8,6 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import tugas.com.security.models.SendEmail;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
@@ -21,16 +20,17 @@ public class SendEmailService {
     private SpringTemplateEngine springTemplateEngine;
 
     public SendEmail sendSimpleMessage(SendEmail sendEmail, Context context){
-        MimeMessage msg = emailSender.createMimeMessage();
+        MimeMessage message = emailSender.createMimeMessage();
+
         try {
             String emailBody = springTemplateEngine.process("email", context);
-            MimeMessageHelper messageHelper = new MimeMessageHelper(msg, StandardCharsets.UTF_8.name());
+            MimeMessageHelper messageHelper = new MimeMessageHelper(message, StandardCharsets.UTF_8.name());
             String htmlMessage = sendEmail.getText();
             messageHelper.setTo(sendEmail.getTo());
             messageHelper.setSubject(sendEmail.getSubject());
             messageHelper.setText(emailBody, true);
-            emailSender.send(msg);
-        }catch (MessagingException e){
+            emailSender.send(message);
+        }catch (Exception e){
             e.printStackTrace();
         }
         return sendEmail;

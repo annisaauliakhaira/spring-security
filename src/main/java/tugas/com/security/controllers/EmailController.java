@@ -11,6 +11,7 @@ import tugas.com.security.services.SendEmailService;
 @RestController
 @RequestMapping("/email")
 public class EmailController {
+
     SendEmailService sendEmailService;
 
     @Autowired
@@ -22,4 +23,5 @@ public class EmailController {
 //    public SendEmail sendEmail(@RequestBody SendEmail sendEmail){
 //        return sendEmailService.sendSimpleMessage(sendEmail);
 //    }
+
 }
