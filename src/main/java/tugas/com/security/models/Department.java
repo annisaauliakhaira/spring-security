@@ -21,7 +21,7 @@ public class Department {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", unique = true, nullable = false, length = 50)
     private String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
